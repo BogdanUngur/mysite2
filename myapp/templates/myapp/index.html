@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}">
+<h1>MY AWESOME MOVIES</h1>
+<table>
+    {% if my_list %}
+        <tr>
+            <th>Title</th>
+            <th>Director</th>
+            <th>Year</th>
+        </tr>
+        {% for movie in my_list %}
+            <tr>
+                <td>{{movie.title}}</td>
+                <td>{{movie.director}}</td>
+                <td>{{movie.year}}</td>
+                <td><a href="{% url 'myapp:update' movie.id %}">update</a></td>
+                <td><a href="{% url 'myapp:delete' movie.id %}">delete</a></td>
+                <td><a href="{% url 'myapp:details' movie.id %}">details</a></td>
+            </tr>
+        {% endfor %}
+    {% else %}
+         <th>INSERT YOUR DAMN MOVIES</th>
+    {% endif %}
+</table>
+<th><a href="{% url 'myapp:create' %}">Create awesome movie</a></th>
